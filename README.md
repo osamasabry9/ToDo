@@ -4,18 +4,19 @@ A new Flutter project.
 
 # Screenshots:
 
-<br>
-1- Home screen
+<p align="center">
+  <img src="home.jpg" width="350" title="1- Home screen">
+</p>
 
-<img src="home.jpg" width="300"/>
-<br>
+<p align="center">
+  <img src="create_Task.jpg" width="350" title="2- Create task screen">
+</p>
 
-2- Create task screen
-<img src="create_Task.jpg" width="300"/>
+<p align="center">
+  <img src="schadule.jpg" width="350" title="3- Schedule screen">
+</p>
 
-<br>
-3- Schedule screen
-<img src="schadule.jpg" width="300"/>
+
 
 ## Getting Started
 
