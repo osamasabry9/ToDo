@@ -84,128 +84,9 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: InputField(
-                          hint: _startTime,
-                          title: 'Strat Time',
-                          widget: IconButton(
-                            onPressed: () =>
-                                _getTimeFromUser(isStartTime: true),
-                            icon: const Icon(
-                              Icons.access_time_outlined,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: InputField(
-                          hint: _endTime,
-                          title: 'End Time',
-                          widget: IconButton(
-                            onPressed: () =>
-                                _getTimeFromUser(isStartTime: false),
-                            icon: const Icon(
-                              Icons.access_time_outlined,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  InputField(
-                    hint: _selectedRemind > 60
-                        ? '1 day early'
-                        : _selectedRemind == 60
-                            ? '1 hour early'
-                            : '$_selectedRemind minutes early',
-                    title: 'Remind',
-                    widget: Row(
-                      children: [
-                        DropdownButton(
-                          dropdownColor: Colors.grey,
-                          borderRadius: BorderRadius.circular(10),
-                          items: remindList
-                              .map<DropdownMenuItem<String>>(
-                                (int value) => DropdownMenuItem<String>(
-                                  value: value.toString(),
-                                  child: Text(
-                                    value == 60
-                                        ? '1 hour'
-                                        : value == 1440
-                                            ? '1 day'
-                                            : ' minutes',
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                          icon: const Icon(
-                            Icons.keyboard_arrow_down,
-                            color: Colors.grey,
-                          ),
-                          elevation: 4,
-                          iconSize: 32,
-                          underline: Container(
-                            height: 0,
-                          ),
-                          style: subTitleStyle,
-                          onChanged: (String? newvalue) {
-                            setState(() {
-                              _selectedRemind = int.parse(newvalue!);
-                            });
-                          },
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                      ],
-                    ),
-                  ),
-                  InputField(
-                    hint: _selectedRepeat,
-                    title: 'Repeat',
-                    widget: Row(
-                      children: [
-                        DropdownButton(
-                          dropdownColor: Colors.grey,
-                          borderRadius: BorderRadius.circular(10),
-                          items: repeatList
-                              .map(
-                                (value) => DropdownMenuItem<String>(
-                                  value: value,
-                                  child: Text(
-                                    value,
-                                    style: const TextStyle(color: Colors.white),
-                                  ),
-                                ),
-                              )
-                              .toList(),
-                          icon: const Icon(
-                            Icons.keyboard_arrow_down,
-                            color: Colors.grey,
-                          ),
-                          elevation: 4,
-                          iconSize: 32,
-                          underline: Container(
-                            height: 0,
-                          ),
-                          style: subTitleStyle,
-                          onChanged: (String? newvalue) {
-                            setState(() {
-                              _selectedRepeat = newvalue!;
-                            });
-                          },
-                        ),
-                        const SizedBox(
-                          width: 20,
-                        ),
-                      ],
-                    ),
-                  ),
+                  startAndEndTimeInputField(),
+                  remindInputField(),
+                  repeatInputField(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -229,6 +110,137 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
         },
       ),
     );
+  }
+
+  Row startAndEndTimeInputField() {
+    return Row(
+                  children: [
+                    Expanded(
+                      child: InputField(
+                        hint: _startTime,
+                        title: 'Strat Time',
+                        widget: IconButton(
+                          onPressed: () =>
+                              _getTimeFromUser(isStartTime: true),
+                          icon: const Icon(
+                            Icons.access_time_outlined,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: InputField(
+                        hint: _endTime,
+                        title: 'End Time',
+                        widget: IconButton(
+                          onPressed: () =>
+                              _getTimeFromUser(isStartTime: false),
+                          icon: const Icon(
+                            Icons.access_time_outlined,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+  }
+
+  InputField repeatInputField() {
+    return InputField(
+                  hint: _selectedRepeat,
+                  title: 'Repeat',
+                  widget: Row(
+                    children: [
+                      DropdownButton(
+                        dropdownColor: Colors.grey,
+                        borderRadius: BorderRadius.circular(10),
+                        items: repeatList
+                            .map(
+                              (value) => DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                        icon: const Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.grey,
+                        ),
+                        elevation: 4,
+                        iconSize: 32,
+                        underline: Container(
+                          height: 0,
+                        ),
+                        style: subTitleStyle,
+                        onChanged: (String? newvalue) {
+                          setState(() {
+                            _selectedRepeat = newvalue!;
+                          });
+                        },
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                    ],
+                  ),
+                );
+  }
+
+  InputField remindInputField() {
+    return InputField(
+                  hint: _selectedRemind > 60
+                      ? '1 day early'
+                      : _selectedRemind == 60
+                          ? '1 hour early'
+                          : '$_selectedRemind minutes early',
+                  title: 'Remind',
+                  widget: Row(
+                    children: [
+                      DropdownButton(
+                        dropdownColor: Colors.grey,
+                        borderRadius: BorderRadius.circular(10),
+                        items: remindList
+                            .map<DropdownMenuItem<String>>(
+                              (int value) => DropdownMenuItem<String>(
+                                value: value.toString(),
+                                child: Text(
+                                  value == 60
+                                      ? '1 hour'
+                                      : value == 1440
+                                          ? '1 day'
+                                          : ' $value minutes',
+                                  style: const TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                        icon: const Icon(
+                          Icons.keyboard_arrow_down,
+                          color: Colors.grey,
+                        ),
+                        elevation: 4,
+                        iconSize: 32,
+                        underline: Container(
+                          height: 0,
+                        ),
+                        style: subTitleStyle,
+                        onChanged: (String? newvalue) {
+                          setState(() {
+                            _selectedRemind = int.parse(newvalue!);
+                          });
+                        },
+                      ),
+                      const SizedBox(
+                        width: 20,
+                      ),
+                    ],
+                  ),
+                );
   }
 
   AppBar _appBar() {
