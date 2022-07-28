@@ -4,10 +4,16 @@ A new Flutter project.
 
 # Screenshots:
 
+<br>
 1- Home screen
+
 <img src="home.jpg" width="300"/>
+<br>
+
 2- Create task screen
 <img src="create_Task.jpg" width="300"/>
+
+<br>
 3- Schedule screen
 <img src="schadule.jpg" width="300"/>
 
